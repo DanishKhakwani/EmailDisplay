@@ -1,0 +1,9 @@
+<h1> Details page </h1>
+
+{% if email %}
+    {{ sender.name }} <br/>
+    {{ email.subject}} <br/>
+    {{ email.content }}<br/>
+    {{ email.timeSent }}<br/>
+    {{ email.recipientIds }}<br/>
+{% endif %}

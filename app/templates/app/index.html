@@ -1,0 +1,14 @@
+<h1>Index Page</h1>
+
+{% if emails %}
+    <ul>
+        {% for email in emails %}
+            <li>
+                <a href="{% url 'detail' email.id %}">
+                    {{ email.subject }} </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No emails to be displayed.</p>
+{% endif %}
