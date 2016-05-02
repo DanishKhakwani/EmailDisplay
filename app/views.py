@@ -8,12 +8,18 @@ from .models import Email, User
 # Create your views here.
 
 def index(request):
-    emails = Email.objects.filter(senderId="P8561044896590126190")
+    return render(request, 'app/index.html')
+
+def search(request):
+    if request.method == 'POST':
+        print(request.POST)
+
+    emails = Email.objects.filter(senderId=request.POST["sender"])
     context = {
             'emails': emails,
     }
 
-    return render(request, 'app/index.html', context)
+    return render(request, 'app/search.html', context)
 
 def detail(request, email_id):
     print(email_id)

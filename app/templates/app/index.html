@@ -1,14 +1,10 @@
-<h1>Index Page</h1>
-
-{% if emails %}
-    <ul>
-        {% for email in emails %}
-            <li>
-                <a href="{% url 'detail' email.id %}">
-                    {{ email.subject }} </a>
-            </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>No emails to be displayed.</p>
-{% endif %}
+<html>
+    <body>
+        <form id="searchbox" action="/app/search/" method="post">
+            {% csrf_token %}
+            <label for="sender">Sender ID:</label>
+            <input id="sender" type="text" name="sender" value="{{ senderID }}"></br>
+            <input type="submit" value="Search">
+        </form>
+    </body>
+</html>
