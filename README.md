@@ -1,8 +1,25 @@
-Make a web application which displays emails, and allows users to search for and display emails matching a variety of criteria.
+# Email Display
 
-Linked below are two Json files:
-https://drive.google.com/open?id=0BycUrk3kLhXIQ1hJOVZrMW5ERDA
-https://drive.google.com/open?id=0BycUrk3kLhXIaTNDZWp1YTJnMGs
+A simple web-app to search the emails stored in a database using sender id,
+recipient id or between specified to/from dates.
+
+### Tools
+- Python 3
+- Django 1.9.5
+
+### Setup
+> Initialize database
+```
+./manage.py migrate
+```
+> Load the data stored in ids.json and emails.json using custom command
+```
+./manage.py loadjson
+```
+
+### Todos
+* Front-end work
+* Use form class to create search forms
 
 The first file, ids.json, maps string identifiers of people to their name (note that name can sometimes be an email address, but that this is irrelevant for this assignment, and all names regardless of appearance can be considered as names).
 
@@ -29,11 +46,3 @@ After selecting an email from a list of searched emails, a user should be able t
 3. See the time the email was sent.
 4. See the subject of the email.
 5. See the full content of the email.
-
-
-Take inspiration from the look and feel of products like google mail or outlook. Alternatively, ebyou may design something entirely different (as long as it meets the requirements, is easy to use, and is well designed).
-
-As mentioned in the previous email, provide following  two outputs:
-
-1. All source code you used in the project, which you should email as a zip file to us.
-2. A publicly accessible URL which hosts your web app. You should email us a link to this.
