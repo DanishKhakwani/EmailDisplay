@@ -1,4 +1,18 @@
 <html>
+
+    <head>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                $("#fromdate").datepicker();
+                $("#todate").datepicker();
+            });
+        </script>  
+    </head>
+        
     <body>
 
         <form id="senderSearch" action="/app/search/" method="post">
@@ -12,6 +26,15 @@
             {% csrf_token %}
             <label for="recipient">Recipient ID:</label>
             <input id="recipient" type="text" name="recipient" value="{{ recipientID }}"></br>
+            <input type="submit" value="Search">
+        </form>
+
+        <form id="recipientSearch" action="/app/search/" method="post">
+            {% csrf_token %}
+            <label for="fromDate">From Date:</label>
+            <input id="fromdate" type="text" name="fromDate"></br>
+            <label for="toDate">To Date:</label>
+            <input id="todate" type="text" name="toDate"></br>
             <input type="submit" value="Search">
         </form>
 

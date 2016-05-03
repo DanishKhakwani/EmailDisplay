@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 from django.template import loader
 
 from .models import Email, User
+import datetime
 
 # Create your views here.
 
@@ -20,6 +21,18 @@ def search(request):
         emails = Email.objects.filter(
                     recipientIds__contains=request.POST["recipient"]
                  )
+    elif "fromDate" in request.POST and "toDate" in request.POST:
+        fromDate = request.POST["fromDate"]
+        toDate = request.POST["toDate"]
+
+        fromDate = datetime.datetime.strptime(fromDate, '%d/%m/%Y').date()
+        toDate = datetime.datetime.strptime(toDate, '%d/%m/%Y').date()
+        print(fromDate)
+        print(toDate)
+
+        emails = Email.objects.filter(
+                timeSent__range=[fromDate, toDate]
+        )
 
     context = {
             'emails': emails,
