@@ -1,10 +1,19 @@
 <html>
     <body>
-        <form id="searchbox" action="/app/search/" method="post">
+
+        <form id="senderSearch" action="/app/search/" method="post">
             {% csrf_token %}
             <label for="sender">Sender ID:</label>
             <input id="sender" type="text" name="sender" value="{{ senderID }}"></br>
             <input type="submit" value="Search">
         </form>
+
+        <form id="recipientSearch" action="/app/search/" method="post">
+            {% csrf_token %}
+            <label for="recipient">Recipient ID:</label>
+            <input id="recipient" type="text" name="recipient" value="{{ recipientID }}"></br>
+            <input type="submit" value="Search">
+        </form>
+
     </body>
 </html>

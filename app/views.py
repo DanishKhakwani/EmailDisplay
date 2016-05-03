@@ -14,7 +14,13 @@ def search(request):
     if request.method == 'POST':
         print(request.POST)
 
-    emails = Email.objects.filter(senderId=request.POST["sender"])
+    if "sender" in request.POST:
+        emails = Email.objects.filter(senderId=request.POST["sender"])
+    elif "recipient" in request.POST:
+        emails = Email.objects.filter(
+                    recipientIds__contains=request.POST["recipient"]
+                 )
+
     context = {
             'emails': emails,
     }
@@ -22,12 +28,17 @@ def search(request):
     return render(request, 'app/search.html', context)
 
 def detail(request, email_id):
-    print(email_id)
     email = Email.objects.get(pk=email_id)
-    sender = User.objects.get(pk=email.senderId)
-    print(type(email))
+    print(email.senderId)
+
     context = {
             'email': email,
-            'sender': sender,
     }
+
+    try:
+        sender = User.objects.get(pk=email.senderId)
+        context["sender"] = sender
+    except User.DoesNotExist:
+        pass
+
     return render(request, 'app/detail.html', context)

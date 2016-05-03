@@ -1,9 +1,15 @@
 <h1> Details page </h1>
 
 {% if email %}
-    {{ sender.name }} <br/>
+    {% if sender.name %} 
+        {{ sender.name }}
+    {% else %}
+        Sender not found in User table <br/>
+    {% endif %}
+
     {{ email.subject}} <br/>
     {{ email.content }}<br/>
     {{ email.timeSent }}<br/>
     {{ email.recipientIds }}<br/>
+
 {% endif %}
